@@ -2,12 +2,13 @@ Summary:	IO Zone Benchmark Program
 Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Name:		iozone
 Version:	3.109
-Release:	1
+Release:	2
 License:	distributable
 Group:		Applications/System
 Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
 #Source0:	ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/%{name}3_9.tar.gz
 Patch0:		%{name}-make.patch
+Patch1:		%{name}-ppc.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -22,7 +23,8 @@ próbuje okre¶liæ szybko¶æ dostêpu do samego urz±dzenia.
 
 %prep
 %setup -q -c
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 cd src/current
