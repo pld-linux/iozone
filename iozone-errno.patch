@@ -1,0 +1,11 @@
+diff -urN iozone-3.163.org/src/current/iozone.c iozone-3.163/src/current/iozone.c
+--- iozone-3.163.org/src/current/iozone.c	Wed Mar 12 09:48:46 2003
++++ iozone-3.163/src/current/iozone.c	Wed Mar 12 09:49:19 2003
+@@ -96,6 +96,7 @@
+ long long mythread_create();
+ #endif
+ 
++#include <errno.h>
+ 
+ char *help[] = {
+ "    Usage: iozone [-s filesize_Kb] [-r record_size_Kb] [-f [path]filename] [-h]",
