@@ -3,16 +3,16 @@ Summary(es):	El IOzone es una ferramenta para prueba de rendimiento em sistemas 
 Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Summary(pt_BR):	O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
 Name:		iozone
-Version:	3.172
+Version:	3.221
 Release:	1
 License:	distributable
 Group:		Applications/System
 Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
-# Source0-md5:	4e8433dd4ef9fbd2e0eaca79c2ff3ea8
-#Source0:	ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/%{name}3_9.tar.gz
+# Source0-md5:	dddcae599f0cfa825a634706a110b4c7
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-ppc.patch
 Patch2:		%{name}-errno.patch
+URL:		http://www.iozone.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -55,7 +55,9 @@ cd src/current
 	linux \
 %endif
 %endif
-	OPT="%{rpmcflags}" CC="%{__cc}"
+	CFLAGS="%{rpmcflags}" \
+	CC="%{__cc}" \
+	GCC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -71,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/*.ps docs/*.pdf src/current/Changes.txt
-%attr(750,root,root) %{_bindir}/iozone
+%attr(755,root,root) %{_bindir}/iozone
 %dir %{_datadir}/iozone
 %{_datadir}/iozone/*.dem
 %{_mandir}/man1/iozone.1*
