@@ -41,14 +41,14 @@
  	@echo "Building iozone for Linux PowerPC"
  	@echo ""
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
  		-DNAME='"linux-powerpc"' -o iozone_linux-powerpc.o
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux libbif.c -o libbif.o
 -	cc -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) $(OPT) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c $(OPT) -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE libasync.c  -o libasync.o 
  
  iozone_linux-sparc.o:	iozone.c libbif.c libasync.c
@@ -56,14 +56,14 @@
  	@echo "Building iozone for Linux Sparc"
  	@echo ""
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
  		-DNAME='"linux-sparc"' -o iozone_linux-sparc.o
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux libbif.c -o libbif.o
 -	cc -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) $(OPT) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c $(OPT) -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE libasync.c  -o libasync.o 
  
  iozone_linux.o:	iozone.c libbif.c libasync.c
@@ -71,14 +71,14 @@
  	@echo "Building iozone for Linux"
  	@echo ""
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DASYNC_IO \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
  		-DNAME='"linux"' -o iozone_linux.o
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux libbif.c -o libbif.o
 -	cc -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) $(OPT) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c $(OPT) -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE libasync.c  -o libasync.o 
  
  iozone_linux-ia64.o:	iozone.c libbif.c
@@ -86,11 +86,11 @@
  	@echo "Building iozone for Linux-ia64"
  	@echo ""
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DNO_THREADS -DNAME='"linux-ia64"' \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DNO_THREADS -DNAME='"linux-ia64"' \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DNO_THREADS -DNAME='"linux-ia64"' \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
  		-o iozone_linux-ia64.o
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -D_LARGEFILE64_SOURCE \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -D_LARGEFILE64_SOURCE \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux libbif.c -o libbif.o
  
  iozone_AIX.o:	iozone.c libbif.c 
