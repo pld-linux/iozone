@@ -1,5 +1,5 @@
---- iozone-3.140/src/current/makefile.orig	Thu Nov  7 18:37:46 2002
-+++ iozone-3.140/src/current/makefile	Sat Nov  9 00:28:47 2002
+--- iozone-3.153/src/current/makefile.orig	Tue Jan 14 16:31:23 2003
++++ iozone-3.153/src/current/makefile	Wed Jan 15 16:17:25 2003
 @@ -145,7 +145,7 @@
  # GNU 'C' compiler Linux build with threads, no largefiles, no async I/O 
  #
@@ -36,7 +36,7 @@
  		-DNO_THREADS -D_LARGEFILE64_SOURCE -Dlinux \
  		iozone_linux-ia64.o libbif.o \
  		-o iozone
-@@ -540,46 +540,46 @@
+@@ -541,46 +541,46 @@
  	@echo ""
  	@echo "Building iozone for Linux PowerPC"
  	@echo ""
@@ -70,8 +70,8 @@
  	@echo ""
  	@echo "Building iozone for Linux"
  	@echo ""
--	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DASYNC_IO \
+-	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
++	$(CC) -c $(OPT) -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
  		-DNAME='"linux"' -o iozone_linux.o
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
