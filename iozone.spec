@@ -1,14 +1,15 @@
 Summary:	IO Zone Benchmark Program
 Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Name:		iozone
-Version:	3.9
-Release:	3
+Version:	3.71
+Release:	1
 License:	distributable 
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
-Source0:	ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/%{name}3_9.tar.gz
-Patch0:		%{name}-3.9-make.patch
+Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
+#Source0:	ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/%{name}3_9.tar.gz
+Patch0:		%{name}-make.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -26,27 +27,29 @@ próbuje okre¶liæ szybko¶æ dostêpu do samego urz±dzenia.
 %patch -p1
 
 %build
-cd src
-%{__make} linux OPT="%{rpmcflags}"
+cd src/current
+%{__make} linux OPT="%{rpmcflags} -O3" CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/iozone,%{_mandir}/man1}
 
-install src/iozone $RPM_BUILD_ROOT%{_bindir}
-install src/iozone.1 $RPM_BUILD_ROOT%{_mandir}/man1
-install src/*.dem $RPM_BUILD_ROOT%{_datadir}/iozone
+install src/current/iozone $RPM_BUILD_ROOT%{_bindir}
+install docs/iozone.1 $RPM_BUILD_ROOT%{_mandir}/man1
+install src/current/*.dem $RPM_BUILD_ROOT%{_datadir}/iozone
 
-gzip -d docs/*.gz
+gzip -d docs/*ps.gz
+mv -f docs/Iozone_ps docs/IOzone.ps
+mv -f docs/IOzone_msword_98.pdf docs/IOzone.pdf
 
-gzip -9nf docs/* src/Changes.txt
+gzip -9nf docs/*.ps src/current/Changes.txt
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*.gz src/*.gz
+%doc docs/*.ps.gz docs/*.pdf src/current/*.gz
 %attr(750,root,root) %{_bindir}/iozone
 %dir %{_datadir}/iozone
 %{_datadir}/iozone/*.dem
