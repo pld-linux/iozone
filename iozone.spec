@@ -36,6 +36,10 @@ arquivos. Gera e mede uma variedade de operações em arquivos.
 %patch0 -p1
 %patch1 -p1
 
+gzip -d docs/Iozone_ps.gz
+mv -f docs/Iozone_ps docs/IOzone.ps
+mv -f docs/IOzone_msword_98.pdf docs/IOzone.pdf
+
 %build
 cd src/current
 %{__make} \
@@ -57,9 +61,6 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/iozone,%{_mandir}/man1}
 install src/current/iozone $RPM_BUILD_ROOT%{_bindir}
 install docs/iozone.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install src/current/*.dem $RPM_BUILD_ROOT%{_datadir}/iozone
-
-mv -f docs/Iozone_ps docs/IOzone.ps
-mv -f docs/IOzone_msword_98.pdf docs/IOzone.pdf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
