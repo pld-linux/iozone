@@ -11,6 +11,7 @@ Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).ta
 #Source0:	ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/%{name}3_9.tar.gz
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-ppc.patch
+Patch2:		%{name}-errno.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,6 +36,7 @@ arquivos. Gera e mede uma variedade de operações em arquivos.
 %setup -q -c
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 gzip -d docs/Iozone_ps.gz
 mv -f docs/Iozone_ps docs/IOzone.ps
