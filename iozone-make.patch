@@ -13,25 +13,25 @@ diff -ur iozone-3.71/src/current/iozone.c iozone-3.71.new/src/current/iozone.c
 diff -ur iozone-3.71/src/current/makefile iozone-3.71.new/src/current/makefile
 --- iozone-3.71/src/current/makefile	Tue Nov 27 16:14:41 2001
 +++ iozone-3.71.new/src/current/makefile	Sat Dec  1 11:26:34 2001
-@@ -131,7 +131,7 @@
+@@ -134,7 +134,7 @@
  # GNU 'C' compiler Linux build with threads, no largefiles, no async I/O 
  #
- linux: iozone_linux.o  libbif.o libasync.o
+ linux:	iozone_linux.o  libbif.o libasync.o
 -	cc  -O3 -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -DASYNC_IO \
-+	$(CC) $(OPT)  -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -DASYNC_IO \
++	$(CC) $(OPT) -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE -Dlinux \
  		iozone_linux.o libasync.o libbif.o -lpthread \
  		-lrt -o iozone
-@@ -140,7 +140,7 @@
+@@ -143,7 +143,7 @@
  # GNU 'C' compiler Linux build with no threads, no largefiles, no async I/O 
  #
- linux-ia64: iozone_linux-ia64.o  libbif.o
+ linux-ia64:	iozone_linux-ia64.o  libbif.o
 -	cc  -O3 -Dunix -DHAVE_ANSIC_C -DSHARED_MEM \
 +	$(CC) $(OPT) -Dunix -DHAVE_ANSIC_C -DSHARED_MEM \
  		-DNO_THREADS -D_LARGEFILE64_SOURCE -Dlinux \
  		iozone_linux-ia64.o libbif.o \
  		-o iozone
-@@ -449,21 +449,21 @@
+@@ -481,22 +481,22 @@
  	@echo ""
  	@echo "Building iozone for Linux"
  	@echo ""
@@ -45,7 +45,8 @@ diff -ur iozone-3.71/src/current/makefile iozone-3.71.new/src/current/makefile
 -	cc -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
 +	$(CC) $(OPT) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE libasync.c  -o libasync.o 
- iozone_linux-ia64.o: iozone.c libbif.c
+ 
+ iozone_linux-ia64.o:	iozone.c libbif.c
  	@echo ""
  	@echo "Building iozone for Linux-ia64"
  	@echo ""
@@ -57,4 +58,4 @@ diff -ur iozone-3.71/src/current/makefile iozone-3.71.new/src/current/makefile
 +	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux libbif.c -o libbif.o
  
- iozone_AIX.o: iozone.c libbif.c 
+ iozone_AIX.o:	iozone.c libbif.c 
