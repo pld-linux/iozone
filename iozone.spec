@@ -4,13 +4,12 @@ Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Summary(pt_BR):	O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
 Name:		iozone
 Version:	3.221
-Release:	1
+Release:	2
 License:	distributable
 Group:		Applications/System
 Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
 # Source0-md5:	dddcae599f0cfa825a634706a110b4c7
 Patch0:		%{name}-make.patch
-Patch1:		%{name}-ppc.patch
 URL:		http://www.iozone.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,7 +34,6 @@ arquivos. Gera e mede uma variedade de operações em arquivos.
 %prep
 %setup -q -c
 %patch0 -p1
-#%patch1 -p1
 
 gzip -d docs/Iozone_ps.gz
 mv -f docs/Iozone_ps docs/IOzone.ps
