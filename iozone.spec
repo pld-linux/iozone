@@ -3,7 +3,7 @@ Summary(es):	El IOzone es una ferramenta para prueba de rendimiento em sistemas 
 Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Summary(pt_BR):	O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
 Name:		iozone
-Version:	3.164
+Version:	3.167
 Release:	1
 License:	distributable
 Group:		Applications/System
