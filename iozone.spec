@@ -35,7 +35,7 @@ arquivos. Gera e mede uma variedade de operações em arquivos.
 %prep
 %setup -q -c
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 
 gzip -d docs/Iozone_ps.gz
 mv -f docs/Iozone_ps docs/IOzone.ps
