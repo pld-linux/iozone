@@ -1,19 +1,6 @@
-diff -ur iozone-3.71/src/current/iozone.c iozone-3.71.new/src/current/iozone.c
---- iozone-3.71/src/current/iozone.c	Tue Nov 27 16:14:40 2001
-+++ iozone-3.71.new/src/current/iozone.c	Sat Dec  1 11:27:01 2001
-@@ -234,7 +234,7 @@
- typedef long long off64_t;
- #endif
- 
--#ifndef solaris
-+#if !defined(solaris) && !defined(linux)
- #ifndef off64_t
- #ifndef _OFF64_T
- #ifndef __AIX__
-diff -ur iozone-3.71/src/current/makefile iozone-3.71.new/src/current/makefile
---- iozone-3.71/src/current/makefile	Tue Nov 27 16:14:41 2001
-+++ iozone-3.71.new/src/current/makefile	Sat Dec  1 11:26:34 2001
-@@ -134,7 +134,7 @@
+--- iozone-3.140/src/current/makefile.orig	Thu Nov  7 18:37:46 2002
++++ iozone-3.140/src/current/makefile	Sat Nov  9 00:28:47 2002
+@@ -145,7 +145,7 @@
  # GNU 'C' compiler Linux build with threads, no largefiles, no async I/O 
  #
  linux:	iozone_linux.o  libbif.o libasync.o
@@ -22,7 +9,25 @@ diff -ur iozone-3.71/src/current/makefile iozone-3.71.new/src/current/makefile
  		-D_LARGEFILE64_SOURCE -Dlinux \
  		iozone_linux.o libasync.o libbif.o -lpthread \
  		-lrt -o iozone
-@@ -143,7 +143,7 @@
+@@ -154,7 +154,7 @@
+ # GNU 'C' compiler Linux build for powerpc chip with threads, no largefiles, no async I/O 
+ #
+ linux-powerpc: iozone_linux-powerpc.o  libbif.o libasync.o
+-	cc  -O3 -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -DASYNC_IO \
++	$(CC) $(OPT) -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -DASYNC_IO \
+ 		-D_LARGEFILE64_SOURCE -Dlinux \
+ 		iozone_linux-powerpc.o libasync.o libbif.o -lpthread \
+ 		-lrt -o iozone
+@@ -162,7 +162,7 @@
+ # GNU 'C' compiler Linux build for sparc chip with threads, no largefiles, no async I/O 
+ #
+ linux-sparc: iozone_linux-sparc.o  libbif.o libasync.o
+-	cc  -O3 -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -DASYNC_IO \
++	$(CC) $(OPT) -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -DASYNC_IO \
+ 		-D_LARGEFILE64_SOURCE -Dlinux \
+ 		iozone_linux-sparc.o libasync.o libbif.o -lpthread \
+ 		-lrt -o iozone
+@@ -171,7 +171,7 @@
  # GNU 'C' compiler Linux build with no threads, no largefiles, no async I/O 
  #
  linux-ia64:	iozone_linux-ia64.o  libbif.o
@@ -31,14 +36,44 @@ diff -ur iozone-3.71/src/current/makefile iozone-3.71.new/src/current/makefile
  		-DNO_THREADS -D_LARGEFILE64_SOURCE -Dlinux \
  		iozone_linux-ia64.o libbif.o \
  		-o iozone
-@@ -481,22 +481,22 @@
+@@ -540,46 +540,46 @@
+ 	@echo ""
+ 	@echo "Building iozone for Linux PowerPC"
+ 	@echo ""
+-	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
++	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
+ 		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
+ 		-DNAME='"linux-powerpc"' -o iozone_linux-powerpc.o
+-	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
+ 		-DSHARED_MEM -Dlinux libbif.c -o libbif.o
+-	cc -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) $(OPT) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
+ 		-D_LARGEFILE64_SOURCE libasync.c  -o libasync.o 
+ 
+ iozone_linux-sparc.o:	iozone.c libbif.c libasync.c
+ 	@echo ""
+ 	@echo "Building iozone for Linux Sparc"
+ 	@echo ""
+-	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
++	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
+ 		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
+ 		-DNAME='"linux-sparc"' -o iozone_linux-sparc.o
+-	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
+ 		-DSHARED_MEM -Dlinux libbif.c -o libbif.o
+-	cc -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) $(OPT) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
+ 		-D_LARGEFILE64_SOURCE libasync.c  -o libasync.o 
+ 
+ iozone_linux.o:	iozone.c libbif.c libasync.c
  	@echo ""
  	@echo "Building iozone for Linux"
  	@echo ""
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO \
 +	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
- 		-o iozone_linux.o
+ 		-DNAME='"linux"' -o iozone_linux.o
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
 +	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux libbif.c -o libbif.o
@@ -50,8 +85,8 @@ diff -ur iozone-3.71/src/current/makefile iozone-3.71.new/src/current/makefile
  	@echo ""
  	@echo "Building iozone for Linux-ia64"
  	@echo ""
--	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DNO_THREADS \
-+	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DNO_THREADS \
+-	cc -c -O3 -Dunix -DHAVE_ANSIC_C -DNO_THREADS -DNAME='"linux-ia64"' \
++	$(CC) $(OPT) -c -Dunix -DHAVE_ANSIC_C -DNO_THREADS -DNAME='"linux-ia64"' \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE iozone.c \
  		-o iozone_linux-ia64.o
 -	cc -c -O3 -Dunix -DHAVE_ANSIC_C -D_LARGEFILE64_SOURCE \
