@@ -1,8 +1,10 @@
 Summary:	IO Zone Benchmark Program
+Summary(es):	El IOzone es una ferramenta para prueba de rendimiento em sistemas de archivos
 Summary(pl):	Program testuj±cy wydajno¶æ I/O
+Summary(pt_BR):	O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
 Name:		iozone
-Version:	3.109
-Release:	2
+Version:	3.140
+Release:	1
 License:	distributable
 Group:		Applications/System
 Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
@@ -16,10 +18,18 @@ Iozone benchmarks IO performance. By default it benchmarks the speed
 of sequential I/O to files, but it also supports a raw mode that
 attempts a measurement of speed when accessing a raw device.
 
+%description -l es
+El IOzone es útil para prueba de rendimiento en sistemas de archivos.
+Genera y medi una variedad de operacións en archivos.
+
 %description -l pl
 Iozone testuje wydajno¶æ I/O. Domy¶lnie testuje szybko¶æ sekwencyjnego
 odczytu/zapisu do plików, ale obs³uguje tak¿e tryb surowy, w którym
 próbuje okre¶liæ szybko¶æ dostêpu do samego urz±dzenia.
+
+%description -l pt_BR
+O IOzone é uma ferramenta para testes de performance em sistemas de
+arquivos. Gera e mede uma variedade de operações em arquivos.
 
 %prep
 %setup -q -c
@@ -28,7 +38,17 @@ próbuje okre¶liæ szybko¶æ dostêpu do samego urz±dzenia.
 
 %build
 cd src/current
-%{__make} linux OPT="%{rpmcflags} -O3" CC="%{__cc}"
+%{__make} \
+%ifarch ppc
+	linux-powerpc \
+%else
+%ifarch sparc sparc64 sparcv9
+	linux-sparc \
+%else
+	linux \
+%endif
+%endif
+	OPT="%{rpmcflags}" CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -38,7 +58,6 @@ install src/current/iozone $RPM_BUILD_ROOT%{_bindir}
 install docs/iozone.1 $RPM_BUILD_ROOT%{_mandir}/man1
 install src/current/*.dem $RPM_BUILD_ROOT%{_datadir}/iozone
 
-gzip -d docs/*ps.gz
 mv -f docs/Iozone_ps docs/IOzone.ps
 mv -f docs/IOzone_msword_98.pdf docs/IOzone.pdf
 
