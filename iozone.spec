@@ -1,9 +1,9 @@
 Summary:	IO Zone Benchmark Program
 Name:		iozone
 Version:	3.9
-Release:	1
+Release:	2
 Group:		Utilities/System
-Source:		ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/iozone3_9.tar
+Source:		ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/iozone3_9.tar.gz
 Copyright:	distributable 
 Patch:		iozone-3.9-make.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
