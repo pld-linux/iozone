@@ -3,7 +3,7 @@ Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Name:		iozone
 Version:	3.71
 Release:	1
-License:	distributable 
+License:	distributable
 Group:		Applications/System
 Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
 #Source0:	ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/%{name}3_9.tar.gz
