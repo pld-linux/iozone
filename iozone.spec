@@ -1,7 +1,7 @@
 Summary:	IO Zone Benchmark Program
 Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Name:		iozone
-Version:	3.71
+Version:	3.100
 Release:	1
 License:	distributable
 Group:		Applications/System
@@ -40,14 +40,12 @@ gzip -d docs/*ps.gz
 mv -f docs/Iozone_ps docs/IOzone.ps
 mv -f docs/IOzone_msword_98.pdf docs/IOzone.pdf
 
-gzip -9nf docs/*.ps src/current/Changes.txt
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*.ps.gz docs/*.pdf src/current/*.gz
+%doc docs/*.ps docs/*.pdf src/current/Changes.txt
 %attr(750,root,root) %{_bindir}/iozone
 %dir %{_datadir}/iozone
 %{_datadir}/iozone/*.dem
