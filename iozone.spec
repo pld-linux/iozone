@@ -8,6 +8,7 @@ Release:	1
 License:	distributable
 Group:		Applications/System
 Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
+# Source0-md5:	4e8433dd4ef9fbd2e0eaca79c2ff3ea8
 #Source0:	ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/%{name}3_9.tar.gz
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-ppc.patch
