@@ -1,7 +1,7 @@
 Summary:	IO Zone Benchmark Program
 Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Name:		iozone
-Version:	3.100
+Version:	3.109
 Release:	1
 License:	distributable
 Group:		Applications/System
