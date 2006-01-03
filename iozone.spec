@@ -3,12 +3,12 @@ Summary(es):	El IOzone es una ferramenta para prueba de rendimiento em sistemas 
 Summary(pl):	Program testuj±cy wydajno¶æ I/O
 Summary(pt_BR):	O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
 Name:		iozone
-Version:	3.221
-Release:	2
+Version:	3.257
+Release:	1
 License:	distributable
 Group:		Applications/System
 Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
-# Source0-md5:	dddcae599f0cfa825a634706a110b4c7
+# Source0-md5:	a4db361cd44e3273cc265a5cce08f938
 Patch0:		%{name}-make.patch
 URL:		http://www.iozone.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -32,7 +32,7 @@ O IOzone é uma ferramenta para testes de performance em sistemas de
 arquivos. Gera e mede uma variedade de operações em arquivos.
 
 %prep
-%setup -q -c
+%setup -q -n %{name}%(echo %{version} | tr . _)
 %patch0 -p1
 
 gzip -d docs/Iozone_ps.gz
@@ -42,13 +42,29 @@ mv -f docs/IOzone_msword_98.pdf docs/IOzone.pdf
 %build
 cd src/current
 %{__make} \
+%ifarch arm
+	linux-arm
+%else
+%ifarch %{x8664}
+	linux-AMD64
+%else
+%ifarch ia64
+	linux-ia64
+%else
 %ifarch ppc
 	linux-powerpc \
+%else
+%ifarch ppc64
+	linux-powerpc64 \
 %else
 %ifarch sparc sparc64 sparcv9
 	linux-sparc \
 %else
 	linux \
+%endif
+%endif
+%endif
+%endif
 %endif
 %endif
 	CFLAGS="%{rpmcflags}" \
