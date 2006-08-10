@@ -67,6 +67,7 @@ cd src/current
 %endif
 %endif
 %endif
+	LDFLAGS="%{rpmldflags}" \
 	CFLAGS="%{rpmcflags}" \
 	CC="%{__cc}" \
 	GCC="%{__cc}"
