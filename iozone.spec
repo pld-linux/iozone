@@ -1,7 +1,7 @@
 Summary:	IO Zone Benchmark Program
-Summary(es):	El IOzone es una ferramenta para prueba de rendimiento em sistemas de archivos
-Summary(pl):	Program testuj±cy wydajno¶æ I/O
-Summary(pt_BR):	O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
+Summary(es.UTF-8):   El IOzone es una ferramenta para prueba de rendimiento em sistemas de archivos
+Summary(pl.UTF-8):   Program testujÄ…cy wydajnoÅ›Ä‡ I/O
+Summary(pt_BR.UTF-8):   O IOzone Ã© uma ferramenta para testes de performance em sistemas de arquivos
 Name:		iozone
 Version:	3.257
 Release:	1
@@ -18,18 +18,18 @@ Iozone benchmarks IO performance. By default it benchmarks the speed
 of sequential I/O to files, but it also supports a raw mode that
 attempts a measurement of speed when accessing a raw device.
 
-%description -l es
-El IOzone es útil para prueba de rendimiento en sistemas de archivos.
-Genera y medi una variedad de operacións en archivos.
+%description -l es.UTF-8
+El IOzone es Ãºtil para prueba de rendimiento en sistemas de archivos.
+Genera y medi una variedad de operaciÃ³ns en archivos.
 
-%description -l pl
-Iozone testuje wydajno¶æ I/O. Domy¶lnie testuje szybko¶æ sekwencyjnego
-odczytu/zapisu do plików, ale obs³uguje tak¿e tryb surowy, w którym
-próbuje okre¶liæ szybko¶æ dostêpu do samego urz±dzenia.
+%description -l pl.UTF-8
+Iozone testuje wydajnoÅ›Ä‡ I/O. DomyÅ›lnie testuje szybkoÅ›Ä‡ sekwencyjnego
+odczytu/zapisu do plikÃ³w, ale obsÅ‚uguje takÅ¼e tryb surowy, w ktÃ³rym
+prÃ³buje okreÅ›liÄ‡ szybkoÅ›Ä‡ dostÄ™pu do samego urzÄ…dzenia.
 
-%description -l pt_BR
-O IOzone é uma ferramenta para testes de performance em sistemas de
-arquivos. Gera e mede uma variedade de operações em arquivos.
+%description -l pt_BR.UTF-8
+O IOzone Ã© uma ferramenta para testes de performance em sistemas de
+arquivos. Gera e mede uma variedade de operaÃ§Ãµes em arquivos.
 
 %prep
 %setup -q -n %{name}%(echo %{version} | tr . _)
