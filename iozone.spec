@@ -1,7 +1,7 @@
 Summary:	IO Zone Benchmark Program
-Summary(es.UTF-8):   El IOzone es una ferramenta para prueba de rendimiento em sistemas de archivos
-Summary(pl.UTF-8):   Program testujący wydajność I/O
-Summary(pt_BR.UTF-8):   O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
+Summary(es.UTF-8):	El IOzone es una ferramenta para prueba de rendimiento em sistemas de archivos
+Summary(pl.UTF-8):	Program testujący wydajność I/O
+Summary(pt_BR.UTF-8):	O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
 Name:		iozone
 Version:	3.257
 Release:	1
