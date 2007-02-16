@@ -3,12 +3,12 @@ Summary(es.UTF-8):	El IOzone es una ferramenta para prueba de rendimiento em sis
 Summary(pl.UTF-8):	Program testujący wydajność I/O
 Summary(pt_BR.UTF-8):	O IOzone é uma ferramenta para testes de performance em sistemas de arquivos
 Name:		iozone
-Version:	3.257
+Version:	3.281
 Release:	1
 License:	distributable
 Group:		Applications/System
 Source0:	http://www.iozone.org/src/current/%{name}%(echo %{version} | tr . _).tar
-# Source0-md5:	a4db361cd44e3273cc265a5cce08f938
+# Source0-md5:	d76a8eb28bf77358230fca3328601cf8
 Patch0:		%{name}-make.patch
 URL:		http://www.iozone.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
