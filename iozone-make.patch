@@ -1,16 +1,16 @@
-diff -urN iozone3_281.orig/src/current/makefile iozone3_281/src/current/makefile
---- iozone3_281.orig/src/current/makefile	2007-02-17 00:36:30.417025531 +0100
-+++ iozone3_281/src/current/makefile	2007-02-17 00:42:08.544294307 +0100
-@@ -14,7 +14,7 @@
+diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefile
+--- iozone3_311/src/current/makefile	2008-09-18 21:35:45.000000000 +0200
++++ iozone3_311-new/src/current/makefile	2008-10-01 16:33:39.323103797 +0200
+@@ -14,7 +14,7 @@ C89	= c89
  GCC	= gcc
  CCS	= /usr/ccs/bin/cc
  NACC	= /opt/ansic/bin/cc
 -CFLAGS	=
 +CFLAGS	= -O3
  S10GCCFLAGS    = -m64 -mcpu=v9
+ S10CCFLAGS     = -xarch=amd64
  
- all:  
-@@ -155,70 +155,70 @@
+@@ -157,70 +157,70 @@ hpux_no_ansi:	iozone_hpux_no.o  libbif.o
  # GNU 'C' compiler Linux build with threads, largefiles, async I/O 
  #
  linux:	iozone_linux.o libasync.o libbif.o fileop_linux.o
@@ -62,7 +62,7 @@ diff -urN iozone3_281.orig/src/current/makefile iozone3_281/src/current/makefile
  #
  # GNU 'C' compiler Linux build with threads, largefiles, async I/O
  #
- linux-arm:	iozone_linux-arm.o  libbif.o libasync.o
+ linux-arm:	iozone_linux-arm.o  libbif.o libasync.o fileop_linux-arm.o
 -	$(CC) -O3 $(LDFLAGS) iozone_linux-arm.o libbif.o libasync.o \
 +	$(CC)  $(LDFLAGS) iozone_linux-arm.o libbif.o libasync.o \
  		-lrt -lpthread -o iozone
@@ -84,7 +84,7 @@ diff -urN iozone3_281.orig/src/current/makefile iozone3_281/src/current/makefile
  #
  linux-S390:	iozone_linux-s390.o libbif.o libasync.o
 -	$(CC)  -O2 $(LDFLAGS) -lpthread -lrt iozone_linux-s390.o \
-+	$(CC)  $(LDFLAGS) -lpthread -lrt iozone_linux-s390.o \
++	$(CC)   $(LDFLAGS) -lpthread -lrt iozone_linux-s390.o \
  		libbif.o libasync.o -o iozone
  
  #
@@ -92,11 +92,11 @@ diff -urN iozone3_281.orig/src/current/makefile iozone3_281/src/current/makefile
  #
  linux-S390X:	iozone_linux-s390x.o libbif.o libasync.o
 -	$(CC)  -O2 $(LDFLAGS) -lpthread -lrt iozone_linux-s390x.o \
-+	$(CC)  $(LDFLAGS) -lpthread -lrt iozone_linux-s390x.o \
++	$(CC)   $(LDFLAGS) -lpthread -lrt iozone_linux-s390x.o \
  		libbif.o libasync.o -o iozone
  
  
-@@ -627,24 +627,24 @@
+@@ -649,24 +649,24 @@ iozone_linux-powerpc.o:	iozone.c libbif.
  	@echo ""
  	@echo "Building iozone for Linux PowerPC"
  	@echo ""
@@ -127,7 +127,7 @@ diff -urN iozone3_281.orig/src/current/makefile iozone3_281/src/current/makefile
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o 
  		
  
-@@ -652,24 +652,24 @@
+@@ -674,24 +674,24 @@ iozone_linux-sparc.o:	iozone.c libbif.c 
  	@echo ""
  	@echo "Building iozone for Linux Sparc"
  	@echo ""
@@ -158,7 +158,7 @@ diff -urN iozone3_281.orig/src/current/makefile iozone3_281/src/current/makefile
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o 
  
  fileop_AIX.o:	fileop.c
-@@ -730,7 +730,7 @@
+@@ -766,7 +766,7 @@ fileop_linux.o:	fileop.c
  	@echo ""
  	@echo "Building fileop for Linux"
  	@echo ""
@@ -167,7 +167,7 @@ diff -urN iozone3_281.orig/src/current/makefile iozone3_281/src/current/makefile
  
  fileop_openbsd.o:	fileop.c
  	@echo ""
-@@ -748,98 +748,98 @@
+@@ -784,98 +784,98 @@ fileop_linux-ia64.o:	fileop.c
  	@echo ""
  	@echo "Building fileop for Linux-ia64"
  	@echo ""
