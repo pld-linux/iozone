@@ -1,6 +1,6 @@
-diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefile
---- iozone3_311/src/current/makefile	2008-09-18 21:35:45.000000000 +0200
-+++ iozone3_311-new/src/current/makefile	2008-10-01 16:33:39.323103797 +0200
+diff -burNp iozone3_315/src/current/makefile iozone3_315-new/src/current/makefile
+--- iozone3_315/src/current/makefile	2008-11-19 17:09:24.000000000 +0100
++++ iozone3_315-new/src/current/makefile	2008-12-01 11:01:58.366731290 +0100
 @@ -14,7 +14,7 @@ C89	= c89
  GCC	= gcc
  CCS	= /usr/ccs/bin/cc
@@ -10,7 +10,7 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  S10GCCFLAGS    = -m64 -mcpu=v9
  S10CCFLAGS     = -xarch=amd64
  
-@@ -157,70 +157,70 @@ hpux_no_ansi:	iozone_hpux_no.o  libbif.o
+@@ -157,71 +157,71 @@ hpux_no_ansi:	iozone_hpux_no.o  libbif.o
  # GNU 'C' compiler Linux build with threads, largefiles, async I/O 
  #
  linux:	iozone_linux.o libasync.o libbif.o fileop_linux.o
@@ -32,10 +32,12 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  #
  # GNU 'C' compiler Linux build for sparc chip with threads, largefiles, async I/O 
  #
- linux-sparc: iozone_linux-sparc.o  libbif.o libasync.o
+ linux-sparc: iozone_linux-sparc.o  libbif.o libasync.o fileop_linux.o
 -	$(CC) -O3 $(LDFLAGS) iozone_linux-sparc.o libasync.o libbif.o \
 +	$(CC)  $(LDFLAGS) iozone_linux-sparc.o libasync.o libbif.o \
  		-lpthread -lrt -o iozone
+-	$(CC) -O3 -Dlinux fileop_linux.o -o fileop
++	$(CC)   -Dlinux fileop_linux.o -o fileop
  
  #
  # GNU 'C' compiler Linux build with threads, largefiles, async I/O 
@@ -67,7 +69,7 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
 +	$(CC)  $(LDFLAGS) iozone_linux-arm.o libbif.o libasync.o \
  		-lrt -lpthread -o iozone
 -	$(CC) -O3 -Dlinux fileop_linux-arm.o -o fileop
-+	$(CC)  -Dlinux fileop_linux-arm.o -o fileop
++	$(CC)   -Dlinux fileop_linux-arm.o -o fileop
  
  #
  # GNU 'C' compiler Linux build with threads, largefiles, async I/O 
@@ -96,19 +98,19 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  		libbif.o libasync.o -o iozone
  
  
-@@ -649,24 +649,24 @@ iozone_linux-powerpc.o:	iozone.c libbif.
+@@ -650,24 +650,24 @@ iozone_linux-powerpc.o:	iozone.c libbif.
  	@echo ""
  	@echo "Building iozone for Linux PowerPC"
  	@echo ""
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE $(CFLAGS) iozone.c \
  		-DNAME='"linux-powerpc"' -o iozone_linux-powerpc.o
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o 
  
  iozone_linux-powerpc64.o:	iozone.c libbif.c libasync.c
@@ -116,30 +118,30 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  	@echo "Building iozone for Linux PowerPC64"
  	@echo ""
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-powerpc64"' \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-powerpc64"' \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-powerpc64"' \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE $(CFLAGS) iozone.c \
  		-o iozone_linux-powerpc64.o
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o 
  		
  
-@@ -674,24 +674,24 @@ iozone_linux-sparc.o:	iozone.c libbif.c 
+@@ -675,24 +675,24 @@ iozone_linux-sparc.o:	iozone.c libbif.c 
  	@echo ""
  	@echo "Building iozone for Linux Sparc"
  	@echo ""
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DDONT_HAVE_O_DIRECT \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE $(CFLAGS) iozone.c \
  		-DNAME='"linux-sparc"' -o iozone_linux-sparc.o
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o 
  
  iozone_linux.o:	iozone.c libbif.c libasync.c
@@ -147,81 +149,81 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  	@echo "Building iozone for Linux"
  	@echo ""
 -	$(CC) -Wall -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
-+	$(CC) -Wall -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
++	$(CC) -Wall -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE $(CFLAGS) iozone.c \
  		-DNAME='"linux"' -o iozone_linux.o
 -	$(CC) -Wall -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) -Wall -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -Wall -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -Wall -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -Wall -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -Wall -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o 
  
  fileop_AIX.o:	fileop.c
-@@ -766,7 +766,7 @@ fileop_linux.o:	fileop.c
+@@ -767,7 +767,7 @@ fileop_linux.o:	fileop.c
  	@echo ""
  	@echo "Building fileop for Linux"
  	@echo ""
 -	$(CC) -Wall -c -O3 $(CFLAGS) fileop.c -o fileop_linux.o
-+	$(CC) -Wall -c  $(CFLAGS) fileop.c -o fileop_linux.o
++	$(CC) -Wall -c $(CFLAGS) fileop.c -o fileop_linux.o
  
  fileop_openbsd.o:	fileop.c
  	@echo ""
-@@ -784,98 +784,98 @@ fileop_linux-ia64.o:	fileop.c
+@@ -785,98 +785,98 @@ fileop_linux-ia64.o:	fileop.c
  	@echo ""
  	@echo "Building fileop for Linux-ia64"
  	@echo ""
 -	$(CC) -Wall -c -O3 $(CFLAGS) fileop.c -o fileop_linux-ia64.o
-+	$(CC) -Wall -c  $(CFLAGS) fileop.c -o fileop_linux-ia64.o
++	$(CC) -Wall -c $(CFLAGS) fileop.c -o fileop_linux-ia64.o
  
  fileop_linux-ppc.o:	fileop.c
  	@echo ""
  	@echo "Building fileop for Linux-powerpc"
  	@echo ""
 -	$(CC) -Wall -c -O3 $(CFLAGS) fileop.c -o fileop_linux-ppc.o
-+	$(CC) -Wall -c  $(CFLAGS) fileop.c -o fileop_linux-ppc.o
++	$(CC) -Wall -c $(CFLAGS) fileop.c -o fileop_linux-ppc.o
  
  fileop_linux-ppc64.o:	fileop.c
  	@echo ""
  	@echo "Building fileop for Linux-powerpc64"
  	@echo ""
 -	$(CC) -Wall -c -O3 $(CFLAGS) fileop.c -o fileop_linux-ppc64.o
-+	$(CC) -Wall -c  $(CFLAGS) fileop.c -o fileop_linux-ppc64.o
++	$(CC) -Wall -c $(CFLAGS) fileop.c -o fileop_linux-ppc64.o
  
  fileop_linux-AMD64.o:	fileop.c
  	@echo ""
  	@echo "Building fileop for Linux-AMD64"
  	@echo ""
 -	$(CC) -Wall -c -O3 $(CFLAGS) fileop.c -o fileop_linux-AMD64.o
-+	$(CC) -Wall -c  $(CFLAGS) fileop.c -o fileop_linux-AMD64.o
++	$(CC) -Wall -c $(CFLAGS) fileop.c -o fileop_linux-AMD64.o
  
  fileop_linux-arm.o:  fileop.c
  	@echo ""
  	@echo "Building fileop for Linux-arm"
  	@echo ""
 -	$(GCC) -Wall -c -O3 $(CFLAGS) fileop.c -o fileop_linux-arm.o
-+	$(GCC) -Wall -c  $(CFLAGS) fileop.c -o fileop_linux-arm.o
++	$(GCC) -Wall -c $(CFLAGS) fileop.c -o fileop_linux-arm.o
  
  fileop_windows.o: fileop.c
  	@echo ""
  	@echo "Building fileop for Windows"
  	@echo ""
 -	$(GCC) -Wall -c -O3 $(CFLAGS) -DWindows fileop.c -o fileop_windows.o
-+	$(GCC) -Wall -c  $(CFLAGS) -DWindows fileop.c -o fileop_windows.o
++	$(GCC) -Wall -c $(CFLAGS) -DWindows fileop.c -o fileop_windows.o
  
  iozone_linux-ia64.o:	iozone.c libbif.c libasync.c
  	@echo ""
  	@echo "Building iozone for Linux-ia64"
  	@echo ""
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-ia64"' \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-ia64"' \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-ia64"' \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE $(CFLAGS) iozone.c \
  		-o iozone_linux-ia64.o
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o 
  
  iozone_linux-arm.o:	iozone.c libbif.c libasync.c
@@ -229,15 +231,15 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  	@echo "Building iozone for Linux-arm"
  	@echo ""
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
  		-DNAME='"linux-arm"' -DLINUX_ARM -DSHARED_MEM \
  		-Dlinux -D_LARGEFILE64_SOURCE $(CFLAGS) iozone.c \
  		-o iozone_linux-arm.o
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o
  
  iozone_linux-AMD64.o:	iozone.c libbif.c libasync.c 
@@ -245,15 +247,15 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  	@echo "Building iozone for Linux-AMD64"
  	@echo ""
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-AMD64"' \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-AMD64"' \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DNAME='"linux-AMD64"' \
  		-D__AMD64__ -DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE \
  		$(CFLAGS) iozone.c \
  		-o iozone_linux-AMD64.o
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -D_LARGEFILE64_SOURCE \
  		-DSHARED_MEM -Dlinux $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c  -o libasync.o 
  
  iozone_linux-s390.o:	iozone.c libbif.c libasync.c
@@ -261,14 +263,14 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  	@echo "Building iozone for Linux-s390"
  	@echo ""
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE $(CFLAGS) iozone.c \
  		-DNAME='"linux-s390"' -o iozone_linux-s390.o
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -Dlinux \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -Dlinux \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -Dlinux \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c -o libasync.o
  
  iozone_linux-s390x.o:	iozone.c libbif.c libasync.c
@@ -276,14 +278,14 @@ diff -burNp iozone3_311/src/current/makefile iozone3_311-new/src/current/makefil
  	@echo "Building iozone for Linux-s390x"
  	@echo ""
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DASYNC_IO -DHAVE_PREAD \
  		-DSHARED_MEM -Dlinux -D_LARGEFILE64_SOURCE $(CFLAGS) iozone.c \
  		-DNAME='"linux-s390x"' -o iozone_linux-s390x.o
 -	$(CC) -c -O3 -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -Dlinux \
-+	$(CC) -c  -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -Dlinux \
++	$(CC) -c -Dunix -DHAVE_ANSIC_C -DSHARED_MEM -Dlinux \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libbif.c -o libbif.o
 -	$(CC) -c -O3 -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
-+	$(CC) -c  -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
++	$(CC) -c -Dunix -Dlinux -DHAVE_ANSIC_C -DASYNC_IO \
  		-D_LARGEFILE64_SOURCE $(CFLAGS) libasync.c -o libasync.o
  
  
