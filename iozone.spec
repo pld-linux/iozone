@@ -13,6 +13,26 @@ Patch0:		%{name}-make.patch
 URL:		http://www.iozone.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define	target linux
+%ifarch arm
+%define	target linux-arm
+%endif
+%ifarch %{x8664}
+%define	target linux-AMD64
+%endif
+%ifarch ia64
+%define	target linux-ia64
+%endif
+%ifarch ppc
+%define	target linux-powerpc
+%endif
+%ifarch ppc64
+%define	target linux-powerpc64
+%endif
+%ifarch sparc sparc64 sparcv9
+%define	target linux-sparc
+%endif
+
 %description
 Iozone benchmarks IO performance. By default it benchmarks the speed
 of sequential I/O to files, but it also supports a raw mode that
@@ -40,33 +60,8 @@ mv -f docs/Iozone_ps docs/IOzone.ps
 mv -f docs/IOzone_msword_98.pdf docs/IOzone.pdf
 
 %build
-cd src/current
-%{__make} \
-%ifarch arm
-	linux-arm
-%else
-%ifarch %{x8664}
-	linux-AMD64
-%else
-%ifarch ia64
-	linux-ia64
-%else
-%ifarch ppc
-	linux-powerpc \
-%else
-%ifarch ppc64
-	linux-powerpc64 \
-%else
-%ifarch sparc sparc64 sparcv9
-	linux-sparc \
-%else
-	linux \
-%endif
-%endif
-%endif
-%endif
-%endif
-%endif
+%{__make} -C src/current \
+	%{target} \
 	LDFLAGS="%{rpmldflags}" \
 	CFLAGS="%{rpmcflags}" \
 	CC="%{__cc}" \
@@ -76,9 +71,9 @@ cd src/current
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/iozone,%{_mandir}/man1}
 
-install src/current/iozone $RPM_BUILD_ROOT%{_bindir}
-install docs/iozone.1 $RPM_BUILD_ROOT%{_mandir}/man1
-install src/current/*.dem $RPM_BUILD_ROOT%{_datadir}/iozone
+install -p src/current/iozone $RPM_BUILD_ROOT%{_bindir}
+cp -p docs/iozone.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -p src/current/*.dem $RPM_BUILD_ROOT%{_datadir}/iozone
 
 %clean
 rm -rf $RPM_BUILD_ROOT
