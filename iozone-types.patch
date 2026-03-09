@@ -1,0 +1,17 @@
+--- iozone3_508/src/current/iozone.c.orig	2026-03-09 19:21:38.809689822 +0100
++++ iozone3_508/src/current/iozone.c	2026-03-09 19:21:48.336356484 +0100
+@@ -1309,13 +1309,13 @@
+ #endif /* End of HAVE ANSI C */
+ 
+ #ifdef HAVE_ANSIC_C
++#if !defined(linux)
+ #if defined (HAVE_PREAD) && defined(_LARGEFILE64_SOURCE)
+ ssize_t pwrite64(int, const void *, size_t, off_t);
+ /* ssize_t pwrite64(); */
+ ssize_t pread64(int, void *, size_t, off_t);
+ /*ssize_t pread64(); */
+ #endif
+-#if !defined(linux)
+ char *getenv();
+ char *inet_ntoa();
+ int system();
